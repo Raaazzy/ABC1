@@ -103,18 +103,18 @@ main:
 	call	printf@PLT
 	lea	rax, length[rip]
 	mov	rsi, rax
-	lea	rax, .LC1[rip]
-	mov	rdi, rax
+	lea	rax, .LC1[rip] //Аргумент для scanf
+	mov	rdi, rax //Записываю значение аргумента для scanf
 	mov	eax, 0
 	call	__isoc99_scanf@PLT
-	mov	eax, DWORD PTR length[rip]
+	mov	eax, DWORD PTR length[rip]//Считывает длинну
 	test	eax, eax
 	jle	.L7
-	mov	eax, DWORD PTR length[rip]
+	mov	eax, DWORD PTR length[rip]//Считывает длинну
 	cmp	eax, 1000
 	jle	.L8
-.L7:
-	mov	eax, DWORD PTR length[rip]
+.L7: //Incorrect input
+	mov	eax, DWORD PTR length[rip] //Считывает длинну
 	mov	esi, eax
 	lea	rax, .LC2[rip]
 	mov	rdi, rax
@@ -123,55 +123,55 @@ main:
 	mov	eax, 1
 	jmp	.L9
 .L8:
-	mov	DWORD PTR i[rip], 0
+	mov	DWORD PTR i[rip], 0 //инициализирует итератор
 	jmp	.L10
 .L11:
-	mov	eax, DWORD PTR i[rip]
+	mov	eax, DWORD PTR i[rip] //Записывается итератор в регистр
 	mov	esi, eax
 	lea	rax, .LC3[rip]
 	mov	rdi, rax
 	mov	eax, 0
 	call	printf@PLT
-	mov	eax, DWORD PTR i[rip]
+	mov	eax, DWORD PTR i[rip] //Записывается итератор в регистр
 	cdqe
-	lea	rdx, 0[0+rax*4]
-	lea	rax, A[rip]
-	add	rax, rdx
+	lea	rdx, 0[0+rax*4] //
+	lea	rax, A[rip] //записываем указатель на массив A в регистр
+	add	rax, rdx //двигаем указатель на значение итератора
 	mov	rsi, rax
 	lea	rax, .LC1[rip]
 	mov	rdi, rax
 	mov	eax, 0
 	call	__isoc99_scanf@PLT
-	mov	eax, DWORD PTR i[rip]
-	add	eax, 1
-	mov	DWORD PTR i[rip], eax
+	mov	eax, DWORD PTR i[rip] //Записывается итератор в регистр
+	add	eax, 1 //Увеличиваю итератор на 1
+	mov	DWORD PTR i[rip], eax //Записывается регистр в итератор
 .L10:
-	mov	edx, DWORD PTR i[rip]
-	mov	eax, DWORD PTR length[rip]
+	mov	edx, DWORD PTR i[rip] //Записывается итератор в регистр
+	mov	eax, DWORD PTR length[rip] //Записывается длинну в регистр
 	cmp	edx, eax
 	jl	.L11
-	mov	eax, DWORD PTR length[rip]
+	mov	eax, DWORD PTR length[rip] //Записывается длинну в регистр
 	mov	esi, eax
-	lea	rax, A[rip]
+	lea	rax, A[rip] 
 	mov	rdi, rax
 	call	Task
 	mov	DWORD PTR -4[rbp], eax
-	mov	DWORD PTR i[rip], 0
+	mov	DWORD PTR i[rip], 0 //Записываю 0 в итератор
 	jmp	.L12
-.L13:
-	mov	eax, DWORD PTR i[rip]
+.L13://For для вывода массива B
+	mov	eax, DWORD PTR i[rip] //Записывается итератор в регистр
 	cdqe
-	lea	rdx, 0[0+rax*4]
-	lea	rax, B[rip]
-	mov	eax, DWORD PTR [rdx+rax]
-	mov	esi, eax
+	lea	rdx, 0[0+rax*4]//???
+	lea	rax, B[rip] //Передаем указатель на Массив B
+	mov	eax, DWORD PTR [rdx+rax] //Получаем значение массива B от итератора
+	mov	esi, eax 
 	lea	rax, .LC4[rip]
 	mov	rdi, rax
 	mov	eax, 0
 	call	printf@PLT
-	mov	eax, DWORD PTR i[rip]
+	mov	eax, DWORD PTR i[rip]//Записывается итератор в регистр
 	add	eax, 1
-	mov	DWORD PTR i[rip], eax
+	mov	DWORD PTR i[rip], eax //Хаписывается Итератор+1 в итератор
 .L12:
 	mov	eax, DWORD PTR i[rip]
 	cmp	DWORD PTR -4[rbp], eax

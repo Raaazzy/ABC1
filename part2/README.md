@@ -19,12 +19,12 @@
 #-32[rbp] - output <br />
 # 6) Добавил в код комментарии происходящего с регистрами
 # 7) Прорефакторил программу для максимального использования регистров 
-#ebx- i
-#r12d - length
-#-212[rbp] - argc
-#-224[rbp] - argv
-#-16[rbp] - input
-#r13 - A
-#r14 - B
-#r15d - b_size
-#-32[rbp] - output
+#ebx- i <br />
+#r12d - length <br />
+#-212[rbp] - argc <br />
+#-224[rbp] - argv <br />
+#-16[rbp] - input <br />
+#r13 - A <br />
+#r14 - B <br />
+#r15d - b_size <br />
+#-32[rbp] - output <br />
